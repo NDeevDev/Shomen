@@ -5,9 +5,9 @@ using UnityEngine;
 public class scr_PlayerGauche : MonoBehaviour
 {
     private Rigidbody2D body;
-    public float moveSpeed;
-    public bool attaque;
-    public GameObject sabreAttaque;
+    public float moveSpeedG;
+    public bool attaqueG;
+    public GameObject sabreAttaqueG;
 
 	void Start ()
     {
@@ -16,15 +16,23 @@ public class scr_PlayerGauche : MonoBehaviour
 	
 	void Update ()
     {
-		if (Input.GetAxis("Horizontal") != 0)
+		if (Input.GetKey(KeyCode.D))
         {
-            body.velocity = new Vector2 (Input.GetAxis("Horizontal") * moveSpeed,0f);
+            body.velocity = new Vector2 (moveSpeedG,0f);
         }
-        if (Input.GetAxis("Horizontal") == 0)
+        if (Input.GetKeyUp(KeyCode.D))
         {
             body.velocity = Vector2.zero;
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKey(KeyCode.Q))
+        {
+            body.velocity = new Vector2(-moveSpeedG, 0f);
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            body.velocity = Vector2.zero;
+        }
+        if (Input.GetKeyDown(KeyCode.C))
         {
             StartCoroutine(Attaque());
         }
@@ -32,10 +40,10 @@ public class scr_PlayerGauche : MonoBehaviour
 
     public IEnumerator Attaque()
     {
-        attaque = true;
-        sabreAttaque.SetActive(true);
+        attaqueG = true;
+        sabreAttaqueG.SetActive(true);
         yield return new WaitForSeconds(0.3f);
-        attaque = false;
-        sabreAttaque.SetActive(false);
+        attaqueG = false;
+        sabreAttaqueG.SetActive(false);
     }
 }
