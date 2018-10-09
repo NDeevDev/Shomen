@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212644240998227716}
   - component: {fileID: 61450802088491596}
   m_Layer: 0
-  m_Name: "spr_plchldr_carr\xE9"
-  m_TagString: Untagged
+  m_Name: SabreD
+  m_TagString: SabreD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114347136735827434}
   m_Layer: 0
   m_Name: Joueur Droit
-  m_TagString: Untagged
+  m_TagString: PlayerD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -158,6 +158,10 @@ MonoBehaviour:
   moveSpeedD: 4
   attaqueD: 0
   sabreAttaqueD: {fileID: 1266450534897524}
+  scoreGTxt: {fileID: 0}
+  scoreG: 0
+  joueurG: {fileID: 0}
+  joueurD: {fileID: 1814741371098700}
 --- !u!212 &212095034346785552
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class scr_PlayerGauche : MonoBehaviour
 {
@@ -9,7 +10,13 @@ public class scr_PlayerGauche : MonoBehaviour
     public bool attaqueG;
     public GameObject sabreAttaqueG;
 
-	void Start ()
+    public Text scoreDTxt;
+    public int scoreD;
+
+    public GameObject joueurG;
+    public GameObject joueurD;
+
+    void Start ()
     {
         body = gameObject.GetComponent<Rigidbody2D>();
 	}
@@ -45,5 +52,22 @@ public class scr_PlayerGauche : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         attaqueG = false;
         sabreAttaqueG.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "SabreD")
+        {
+            StartCoroutine(EndRoundG());
+        }
+    }
+
+    public IEnumerator EndRoundG()
+    {
+        scoreD++;
+        scoreDTxt.text = scoreD.ToString();
+        yield return new WaitForSecondsRealtime(2f);
+        joueurG.transform.position = new Vector2(-3f, 0f);
+        joueurD.transform.position = new Vector2(3f, 0f);
     }
 }

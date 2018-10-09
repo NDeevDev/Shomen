@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerD
+  - SabreG
+  - SabreD
   layers:
   - Default
   - TransparentFX
