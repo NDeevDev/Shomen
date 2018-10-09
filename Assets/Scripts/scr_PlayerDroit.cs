@@ -16,6 +16,8 @@ public class scr_PlayerDroit : MonoBehaviour
     public GameObject joueurG;
     public GameObject joueurD;
 
+    private bool mort;
+
     void Start()
     {
         body = gameObject.GetComponent<Rigidbody2D>();
@@ -24,25 +26,28 @@ public class scr_PlayerDroit : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (mort == false)
         {
-            body.velocity = new Vector2(moveSpeedD, 0f);
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            body.velocity = Vector2.zero;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            body.velocity = new Vector2(-moveSpeedD, 0f);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            body.velocity = Vector2.zero;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            StartCoroutine(Attaque());
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                body.velocity = new Vector2(moveSpeedD, 0f);
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                body.velocity = Vector2.zero;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                body.velocity = new Vector2(-moveSpeedD, 0f);
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                body.velocity = Vector2.zero;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad0))
+            {
+                StartCoroutine(Attaque());
+            }
         }
     }
 
@@ -65,10 +70,13 @@ public class scr_PlayerDroit : MonoBehaviour
 
     public IEnumerator EndRoundD()
     {
+        mort = true;
         scoreG++;
         scoreGTxt.text = scoreG.ToString();
         yield return new WaitForSecondsRealtime(2f);
         joueurG.transform.position = new Vector2(-3f, 0f);
         joueurD.transform.position = new Vector2(3f, 0f);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<scr_GameManager>().timer = 0f;
+        mort = false;
     }
 }

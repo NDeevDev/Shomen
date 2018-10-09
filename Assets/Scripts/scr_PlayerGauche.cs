@@ -16,6 +16,8 @@ public class scr_PlayerGauche : MonoBehaviour
     public GameObject joueurG;
     public GameObject joueurD;
 
+    private bool mort;
+
     void Start ()
     {
         body = gameObject.GetComponent<Rigidbody2D>();
@@ -23,25 +25,28 @@ public class scr_PlayerGauche : MonoBehaviour
 	
 	void Update ()
     {
-		if (Input.GetKey(KeyCode.D))
+        if (mort == false)
         {
-            body.velocity = new Vector2 (moveSpeedG,0f);
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            body.velocity = Vector2.zero;
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            body.velocity = new Vector2(-moveSpeedG, 0f);
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            body.velocity = Vector2.zero;
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            StartCoroutine(Attaque());
+            if (Input.GetKey(KeyCode.D))
+            {
+                body.velocity = new Vector2(moveSpeedG, 0f);
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                body.velocity = Vector2.zero;
+            }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                body.velocity = new Vector2(-moveSpeedG, 0f);
+            }
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                body.velocity = Vector2.zero;
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                StartCoroutine(Attaque());
+            }
         }
 	}
 
@@ -64,10 +69,13 @@ public class scr_PlayerGauche : MonoBehaviour
 
     public IEnumerator EndRoundG()
     {
+        mort = true;
         scoreD++;
         scoreDTxt.text = scoreD.ToString();
         yield return new WaitForSecondsRealtime(2f);
         joueurG.transform.position = new Vector2(-3f, 0f);
         joueurD.transform.position = new Vector2(3f, 0f);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<scr_GameManager>().timer = 0f;
+        mort = false;
     }
 }

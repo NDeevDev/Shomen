@@ -143,6 +143,8 @@ MonoBehaviour:
   timerTxt: {fileID: 1837685132}
   timer: 0
   tempsRound: 30
+  joueurG: {fileID: 1063930624}
+  joueurD: {fileID: 750787301}
 --- !u!4 &165365922
 Transform:
   m_ObjectHideFlags: 0
@@ -795,6 +797,10 @@ Prefab:
       propertyPath: joueurG
       value: 
       objectReference: {fileID: 1063930624}
+    - target: {fileID: 1266450534897524, guid: 07d69992df7efe54cbe0d6e567cfb237, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d69992df7efe54cbe0d6e567cfb237, type: 2}
   m_IsPrefabAsset: 0
