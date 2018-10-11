@@ -273,11 +273,6 @@ Prefab:
       propertyPath: joueurD
       value: 
       objectReference: {fileID: 750787301}
-    - target: {fileID: 61802294837952474, guid: b09cf16604196cb49a0c9ec2220aebb7,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b09cf16604196cb49a0c9ec2220aebb7, type: 2}
   m_IsPrefabAsset: 0
@@ -580,22 +575,6 @@ RectTransform:
   m_AnchoredPosition: {x: 300, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1822923269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1245192655012560, guid: b09cf16604196cb49a0c9ec2220aebb7,
-    type: 2}
-  m_PrefabInternal: {fileID: 370182479}
---- !u!114 &1822923273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1822923269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a40c2869e59074ab680dddd1185686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1837685130
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,15 +797,6 @@ Prefab:
       propertyPath: joueurG
       value: 
       objectReference: {fileID: 1063930624}
-    - target: {fileID: 1266450534897524, guid: 07d69992df7efe54cbe0d6e567cfb237, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61450802088491596, guid: 07d69992df7efe54cbe0d6e567cfb237,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d69992df7efe54cbe0d6e567cfb237, type: 2}
   m_IsPrefabAsset: 0

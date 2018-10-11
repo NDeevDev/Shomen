@@ -17,6 +17,7 @@ public class scr_PlayerDroit : MonoBehaviour
     public GameObject joueurD;
 
     private bool mort;
+    private bool canAttack = true;
 
     void Start()
     {
@@ -44,10 +45,14 @@ public class scr_PlayerDroit : MonoBehaviour
             {
                 body.velocity = Vector2.zero;
             }
-            if (Input.GetKeyDown(KeyCode.Keypad0))
+            if (Input.GetKeyDown(KeyCode.Keypad0) && canAttack)
             {
                 StartCoroutine(Attaque());
             }
+        }
+        if (mort == true)
+        {
+            body.velocity = Vector2.zero;
         }
     }
 
@@ -55,9 +60,12 @@ public class scr_PlayerDroit : MonoBehaviour
     {
         attaqueD = true;
         sabreAttaqueD.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        canAttack = false;
+        yield return new WaitForSeconds(0.2f);
         attaqueD = false;
         sabreAttaqueD.SetActive(false);
+        yield return new WaitForSeconds(0.3f);
+        canAttack = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

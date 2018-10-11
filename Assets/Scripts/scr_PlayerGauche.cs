@@ -16,7 +16,11 @@ public class scr_PlayerGauche : MonoBehaviour
     public GameObject joueurG;
     public GameObject joueurD;
 
-    private bool mort;
+    private bool canMove = true;
+    private bool canAttack = true;
+    private bool canDash = true;
+
+    public float dashKeyHold;
 
     void Start ()
     {
@@ -25,7 +29,7 @@ public class scr_PlayerGauche : MonoBehaviour
 	
 	void Update ()
     {
-        if (mort == false)
+        if (canMove == true)
         {
             if (Input.GetKey(KeyCode.D))
             {
@@ -43,20 +47,47 @@ public class scr_PlayerGauche : MonoBehaviour
             {
                 body.velocity = Vector2.zero;
             }
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C) && canAttack)
             {
                 StartCoroutine(Attaque());
             }
         }
-	}
+        if (canMove == false)
+        {
+            body.velocity = Vector2.zero;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && canDash)
+        {
+            canMove = false;
+            dashKeyHold += Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash());
+        }
+    }
 
     public IEnumerator Attaque()
     {
         attaqueG = true;
         sabreAttaqueG.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        canAttack = false;
+        yield return new WaitForSeconds(0.2f);
         attaqueG = false;
         sabreAttaqueG.SetActive(false);
+        yield return new WaitForSeconds(0.3f);
+        canAttack = true;
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+
+        body.AddForce(Vector2.right * dashKeyHold, ForceMode2D.Impulse);
+        yield return new WaitForSecondsRealtime(0.1f);
+        canMove = true;
+        canDash = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -69,13 +100,13 @@ public class scr_PlayerGauche : MonoBehaviour
 
     public IEnumerator EndRoundG()
     {
-        mort = true;
+        canMove = false;
         scoreD++;
         scoreDTxt.text = scoreD.ToString();
         yield return new WaitForSecondsRealtime(2f);
         joueurG.transform.position = new Vector2(-3f, 0f);
         joueurD.transform.position = new Vector2(3f, 0f);
         GameObject.FindGameObjectWithTag("GameController").GetComponent<scr_GameManager>().timer = 0f;
-        mort = false;
+        canMove = true;
     }
 }
